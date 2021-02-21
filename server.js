@@ -1,6 +1,8 @@
 const express = require('express');
-
 const app = express();
+const cors = require('cors');
+
+app.use(cors());
 app.use(express.static('./dist/books-ui'));
 app.get('/*', function (req, res) {
     res.sendFile('index.html', { root: 'dist/books-ui/' }
