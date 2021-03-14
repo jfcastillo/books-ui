@@ -1,11 +1,13 @@
 const express = require('express');
-const app = express();
-const cors = require('cors');
+const path = require('path');
 
-app.use(cors());
-app.use(express.static('./dist/books-ui'));
+const app = express();
+
+app.use(express.static(__dirname + '/dist/books-ui'));
+
 app.get('/*', function (req, res) {
-    res.sendFile('index.html', { root: 'dist/books-ui/' }
-    );
+
+    res.sendFile(path.join(`${__dirname}/dist/books-ui/index.html`));
 });
+
 app.listen(process.env.PORT || 8080);
